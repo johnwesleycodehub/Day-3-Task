@@ -1,20 +1,25 @@
 //! Task 1 compare two JSON objects without considering the order and without using sorting
-let obj1 = { name: "person 1", age: 5 };
-let obj2 = { age: 5, name: "person 1" };
+let obj1 = { name: "person", age: 5 };
+let obj2 = { age: 5, name: "person" };
 
-let json1 = JSON.stringify(obj1);
-let json2 = JSON.stringify(obj2);
-if (json1 === json2) {
-  let parsedObj1 = JSON.parse(json1);
-  let parsedObj2 = JSON.parse(json2);
-  if (
-    parsedObj1.name === parsedObj2.name &&
-    parsedObj1.age === parsedObj2.age
-  ) {
-    console.log("The name and age are equal.");
+let same = true;
+if (Object.keys(obj1).length === Object.keys(obj2).length) {
+  for (let key in obj1) {
+    if (obj1[key] === obj2[key]) {
+      console.log(key, "is same");
+    } else {
+      same = false;
+      console.log(key, "is different");
+    }
   }
 } else {
-  console.log("The name and age are not equal.");
+  same = false;
+  console.log("Length are different");
+}
+if (same) {
+  console.log("JSON IS EQUAL");
+} else {
+  console.log("JSON IS NOT EQUAL");
 }
 
 //! Task 2 Display all the country flags from the api
